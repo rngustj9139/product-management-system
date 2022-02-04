@@ -62,20 +62,20 @@ public class ItemController {
     public String items(Model model) {
         List<Item> items = itemService.findAllItem();
         model.addAttribute("items", items);
-        return "html/items";
+        return "items/items";
     }
 
     @GetMapping("/{itemId}")
     public String item(@PathVariable long itemId, Model model) {
         Item item = itemService.findOneItem(itemId);
         model.addAttribute("item", item);
-        return "html/item";
+        return "items/item";
     }
 
     @GetMapping("/add")
     public String addForm(Model model) {
         model.addAttribute("item", new Item());
-        return "html/addForm";
+        return "items/addForm";
     }
 
     @PostMapping("/add")
@@ -93,7 +93,7 @@ public class ItemController {
             log.info("errors = {}", bindingResult);
 //         BindingResult는 자동으로 모델에 담겨서 뷰로 전달된다.
 //         form은 자동으로 모델에 담겨서 뷰로 전달된다. (key == "item")
-            return "html/addForm";
+            return "items/addForm";
         }
 
         // 검증 성공 로직
@@ -116,7 +116,7 @@ public class ItemController {
     public String editForm(@PathVariable Long itemId, Model model) {
         Item item = itemService.findOneItem(itemId);
         model.addAttribute("item", item);
-        return "html/editForm";
+        return "items/editForm";
     }
 
     @PostMapping("/{itemId}/edit")
@@ -132,7 +132,7 @@ public class ItemController {
         // 검증에 실패하면 다시 입력 폼으로
         if(bindingResult.hasErrors()) {
             log.info("errors = {}", bindingResult);
-            return "html/editForm";
+            return "items/editForm";
         }
 
         // 검증 성공 로직

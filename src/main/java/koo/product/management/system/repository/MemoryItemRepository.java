@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Repository
 public class MemoryItemRepository implements ItemRepository{
 
     private static final Map<Long, Item> store = new HashMap<>();
@@ -46,14 +47,5 @@ public class MemoryItemRepository implements ItemRepository{
 //    public void clearStore() {
 //        store.clear();
 //    }
-
-    @PostConstruct
-    public void init() {
-        Item item1 = new Item("test1", 1234, 1234);
-        Item item2 = new Item("test2", 1234, 1234);
-
-        save(item1);
-        save(item2);
-    }
 
 }
