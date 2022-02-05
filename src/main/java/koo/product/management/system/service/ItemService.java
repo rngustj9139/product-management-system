@@ -34,4 +34,8 @@ public class ItemService {
         itemRepository.update(itemId, updateParam);
     }
 
+    public void erase(Long itemId) {
+        itemRepository.delete(itemId);
+    }
+
 }

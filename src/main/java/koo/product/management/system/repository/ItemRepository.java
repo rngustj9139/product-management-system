@@ -10,5 +10,6 @@ public interface ItemRepository {
     Item findById(Long id);
     List<Item> findAll();
     void update(Long itemId, Item updateParam);
+    void delete(Long itemId);
 
 }

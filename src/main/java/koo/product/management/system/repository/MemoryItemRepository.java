@@ -44,6 +44,12 @@ public class MemoryItemRepository implements ItemRepository{
         findItem.setDeliveryCode(updateParam.getDeliveryCode());
     }
 
+    @Override
+    public void delete(Long itemId) {
+        store.remove(itemId);
+        --sequence;
+    }
+
 //    public void clearStore() {
 //        store.clear();
 //    }

@@ -152,5 +152,15 @@ public class ItemController {
         return "redirect:/items/{itemId}";
     }
 
+    @GetMapping("{itemId}/delete")
+    public String deleteItem(@PathVariable Long itemId, Model model) {
+        itemService.erase(itemId);
+
+        List<Item> items = itemService.findAllItem();
+        model.addAttribute("items", items);
+
+        return "redirect:/items";
+    }
+
 }
 

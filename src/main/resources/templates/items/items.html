@@ -39,6 +39,7 @@
                 <th th:text="#{label.item.itemName}">상품명</th>
                 <th th:text="#{label.item.price}">가격</th>
                 <th th:text="#{label.item.quantity}">수량</th>
+                <th th:text="#{page.deleteItem}">삭제</th>
             </tr>
             </thead>
             <tbody>
@@ -47,6 +48,12 @@
                 <td><a href="item.html" th:href="@{|/items/${item.id}|}" th:text="${item.itemName}">상품명</a></td>
                 <td th:text="${item.price}">10000</td>
                 <td th:text="${item.quantity}">10</td>
+                <td>
+                    <button class="h-auto btn btn-danger btn-sm"
+                            onclick="location.href='items.html'"
+                            th:onclick="|location.href='@{/items/{itemId}/delete(itemId=${item.id})}'|"
+                            type="button" th:text="#{page.deleteItem}">삭제</button>
+                </td>
             </tr>
             </tbody>
         </table>
