@@ -30,25 +30,25 @@
       <p class="mb-0">이메일</p>
       <div class="input-group">
         <input type="text" id="emailFirst" th:field="*{emailFirst}" class="w-25 form-control" th:errorclass="field-error">
-        <div class="field-error" th:errors="*{emailFirst}" />
 
         <span class="input-group-text">@</span>
 
         <input type="text" id="emailLast" th:field="*{emailLast}" class="w-25 form-control" th:errorclass="field-error">
-        <div class="field-error" th:errors="*{emailLast}" />
 
         <select id="dropdown" th:field="*{emailLast}" class="form-select">
-          <option value="first">직접입력</option>
+          <option value="">직접입력</option>
           <option th:each="emailCode : ${emailCodes}" th:value="${emailCode.code}"
                   th:text="${emailCode.displayName}">네이버</option>
         </select>
       </div>
+      <div class="field-error" th:errors="*{emailFirst}" />
+      <div class="field-error" th:errors="*{emailLast}" />
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- 이메일 셀렉트 박스가 직접입력이 아니면 emailLast input 박스가 disabled됨 -->
     <script th:inline="javascript">
       $('#dropdown').change(function() {
-        if( $(this).val() === "first") {
+        if( $(this).val() === "") {
           $('#emailLast').prop( 'disabled', false );
         } else if($(this).val() === "naver.com"){
           $('input#emailLast').val("naver.com");
@@ -81,6 +81,18 @@
       <input type="text" id="name" th:field="*{name}" class="form-control"
              th:errorclass="field-error">
       <div class="field-error" th:errors="*{name}" />
+    </div>
+
+    <!-- radio button -->
+    <div>
+      <div>성별</div>
+      <div th:each="genderType : ${genderTypes}" class="form-check form-check-inline">
+        <input type="radio" th:field="*{gender}" th:value="${genderType.name()}" class="form-check-input">
+        <label th:for="${#ids.prev('gender')}" th:text="${genderType.description}" class="form-check-label">
+          남성
+        </label>
+      </div>
+      <div class="field-error" th:errors="*{gender}" />
     </div>
 
     <hr class="my-4">

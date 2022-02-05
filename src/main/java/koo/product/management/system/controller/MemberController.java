@@ -1,7 +1,9 @@
 package koo.product.management.system.controller;
 
 import koo.product.management.system.domain.item.DeliveryCode;
+import koo.product.management.system.domain.item.ItemType;
 import koo.product.management.system.domain.member.EmailCode;
+import koo.product.management.system.domain.member.GenderType;
 import koo.product.management.system.domain.member.Member;
 import koo.product.management.system.dto.MemberSaveForm;
 import koo.product.management.system.repository.MemoryMemberRepository;
@@ -37,6 +39,12 @@ public class MemberController {
         return emailCodes;
     }
 
+    @ModelAttribute("genderTypes")
+    public GenderType[] genderTypes() {
+        GenderType[] genderTypes = GenderType.values();
+
+        return genderTypes;
+    }
 
     @GetMapping("/add")
     public String addForm(@ModelAttribute("memberSaveForm") MemberSaveForm memberSaveForm) {
@@ -45,6 +53,16 @@ public class MemberController {
 
     @PostMapping("/add")
     public String save(@Validated @ModelAttribute MemberSaveForm memberSaveForm, BindingResult bindingResult) {
+        if(memberSaveForm.getGender() == null) {
+            bindingResult.rejectValue("gender", "genderIsNull"); // field 에러일 경우 rejectValue, object(global) 에러일 경우 reject
+        }
+
+        log.info("first email = {}, last email = {}", memberSaveForm.getEmailFirst(), memberSaveForm.getEmailLast());
+
+        if(!memberSaveForm.getEmailLast().equals("naver.com") && !memberSaveForm.getEmailLast().equals("google.com") && !memberSaveForm.getEmailLast().equals("daum.net")) { // string간의 비교는 equals 함수를 사용해야한다.
+            bindingResult.rejectValue("emailLast", "emailFormat");
+        }
+
         if(bindingResult.hasErrors()) {
             return "members/addMemberForm";
         }
@@ -54,8 +72,10 @@ public class MemberController {
         member.setLoginId(memberSaveForm.getLoginId());
         member.setPassword(memberSaveForm.getPassword());
         member.setName(memberSaveForm.getName());
+        member.setGender(memberSaveForm.getGender());
 
-        log.info("signed up member email = {}", member.getEmail());
+//        log.info("signed up member email = {}", member.getEmail());
+//        log.info("signed up member gender = {}", member.getGender());
 
         memoryMemberRepository.save(member);
 
