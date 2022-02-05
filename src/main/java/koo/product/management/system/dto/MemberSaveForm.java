@@ -1,17 +1,18 @@
-package koo.product.management.system.domain.member;
+package koo.product.management.system.dto;
 
 import lombok.Data;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-@Data
-public class Member {
+@Data // setter, getter, toString
+public class MemberSaveForm {
 
-    private Long id;
-
+    @NotEmpty
 //  @Email // 이메일 형식이 아닌 경우 예외를 던짐
-    private String email;
+    private String emailFirst;
+
+    @NotEmpty
+    private String emailLast;
 
     @NotEmpty
     private String loginId;
