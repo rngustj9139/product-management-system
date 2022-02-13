@@ -42,6 +42,8 @@ public class MemoryItemRepository implements ItemRepository{
         findItem.setRegions(updateParam.getRegions());
         findItem.setItemType(updateParam.getItemType());
         findItem.setDeliveryCode(updateParam.getDeliveryCode());
+        findItem.setAttachFile(updateParam.getAttachFile());
+        findItem.setImageFiles(updateParam.getImageFiles());
     }
 
     @Override

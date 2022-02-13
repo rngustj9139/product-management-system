@@ -22,7 +22,7 @@
         <h2 th:text="#{page.addItem}">상품 등록</h2>
     </div>
 
-    <form action="item.html" th:action th:object="${item}" method="post">
+    <form action="item.html" th:action th:object="${item}" method="post" enctype="multipart/form-data">
 
         <div th:if="${#fields.hasGlobalErrors()}">
             <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메세지</p>
@@ -54,6 +54,17 @@
             <div>
                 <p class="field-error" th:errors="*{quantity}">수량 오류</p>
             </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="mb-3">
+            <label for="attachFile" class="form-label">상품 설명 파일</label>
+            <input class="form-control" type="file" id="attachFile" name="attachFile">
+        </div>
+        <div class="mb-3">
+            <label for="imageFiles" class="form-label">상품 이미지 파일</label>
+            <input class="form-control" type="file" id="imageFiles" name="imageFiles" multiple="multiple">
         </div>
 
         <hr class="my-4">

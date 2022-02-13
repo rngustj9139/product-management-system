@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<div class="container" style="max-width: 600px">
+<div class="container" style="max-width: 700px">
     <div class="py-5 text-center">
         <h2 th:text="#{page.items}">상품 목록</h2>
     </div>
@@ -32,7 +32,7 @@
     <hr class="my-4">
 
     <div>
-        <table class="table">
+        <table class="table table-secondary table-striped">
             <thead>
             <tr>
                 <th th:text="#{label.item.id}">ID</th>
@@ -44,7 +44,7 @@
             </thead>
             <tbody>
             <tr th:each="i : ${#numbers.sequence(items.size() - 1, 0, -1)}" th:with="item=${items[i]}"> <!-- 최근에 등록한 상품이 위로 오게 역순으로 출력 -->
-                <td><a href="item.html" th:href="@{/items/{itemId}(itemId=${item.id})}" th:text="${item.id}">회원id</a></td>
+                <td><a href="item.html" th:href="@{/items/{itemId}(itemId=${item.id})}" th:text="${item.id}">상품ID</a></td>
                 <td><a href="item.html" th:href="@{|/items/${item.id}|}" th:text="${item.itemName}">상품명</a></td>
                 <td th:text="${item.price}">10000</td>
                 <td th:text="${item.quantity}">10</td>

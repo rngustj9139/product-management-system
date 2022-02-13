@@ -21,7 +21,7 @@
         <h2 th:text="#{page.updateItem}">상품 수정</h2>
     </div>
 
-    <form action="item.html" th:action th:object="${item}" method="post">
+    <form action="item.html" th:action th:object="${item}" method="post" enctype="multipart/form-data">
 
         <div th:if="${#fields.hasGlobalErrors()}">
             <p class="field-error" th:each="err : ${#fields.globalErrors()}"
@@ -64,6 +64,28 @@
             <div class="field-error" th:errors="*{quantity}">
                 수량 오류
             </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="row g-0 bg-light position-relative">
+            <div class="col-md-6 mb-md-0 p-md-4">
+                <img class="w-100" th:each="imageFile : ${item.imageFiles}" th:src="|/items/images/${imageFile.getStoreFileName()}|"/>
+            </div>
+            <div class="col-md-6 p-4 ps-md-0">
+                <h5 class="mt-0">상품 이미지 샘플</h5>
+                <p>상품 설명 파일을 다운로드 하고 싶으시면 아래의 버튼을 클릭하여 주세요</p>
+                <a class="btn btn-primary stretched-link" th:if="${item.attachFile}" th:href="|/items/attach/${item.id}|" th:text="${item.getAttachFile().getUploadFileName()}"/></a>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="attachFile" class="form-label">상품 설명 파일</label>
+            <input class="form-control" type="file" id="attachFile" name="attachFile">
+        </div>
+        <div class="mb-3">
+            <label for="imageFiles" class="form-label">상품 이미지 파일</label>
+            <input class="form-control" type="file" id="imageFiles" name="imageFiles" multiple="multiple">
         </div>
 
         <hr class="my-4">
