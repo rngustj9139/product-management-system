@@ -6,7 +6,7 @@
           href="../css/bootstrap.min.css" rel="stylesheet">
     <style>
         .container {
-            max-width: 560px;
+            max-width: 1320px;
         }
         .field-error {
             border-color: #dc3545;
@@ -15,9 +15,9 @@
     </style>
 </head>
 <body>
+<div th:insert="~{fragment/navbar :: navbar}"></div>
 
-<div class="container">
-
+<div class="container" style="max-width: 600px; margin-top: 43px; margin-bottom: 93px">
     <div class="py-5 text-center">
         <h2 th:text="#{page.addItem}">상품 등록</h2>
     </div>
@@ -126,5 +126,7 @@
     </form>
 
 </div> <!-- /container -->
+
+<div th:insert="~{fragment/footer :: footer}"></div>
 </body>
 </html>

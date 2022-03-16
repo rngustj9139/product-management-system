@@ -6,7 +6,7 @@
         href="../css/bootstrap.min.css" rel="stylesheet">
   <style>
     .container {
-      max-width: 560px;
+      max-width: 1320px;
     }
     .field-error {
       border-color: #dc3545;
@@ -15,7 +15,9 @@
   </style>
 </head>
 <body>
-<div class="container">
+<div th:insert="~{fragment/navbar :: navbar}"></div>
+
+<div class="container" style="max-width: 600px; margin-top: 150px; margin-bottom: 195px">
   <div class="py-5 text-center">
     <h2>로그인</h2>
   </div>
@@ -52,5 +54,7 @@
     </div>
   </form>
 </div> <!-- /container -->
+
+<div th:insert="~{fragment/footer :: footer}"></div>
 </body>
 </html>

@@ -6,7 +6,11 @@
         href="../css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="container" style="max-width: 600px">
+<div th:insert="~{fragment/navbar :: navbar}"></div>
+
+<div th:insert="~{fragment/header :: header}" class="mb-xxl-5"></div>
+
+<div class="container" style="max-width: 1000px; margin-top: 200px; margin-bottom: 210px">
   <div class="py-5 text-center">
     <h2>홈 화면</h2>
   </div>
@@ -30,5 +34,7 @@
   </div>
   <hr class="my-4">
 </div> <!-- /container -->
+
+<div th:insert="~{fragment/footer :: footer}"></div>
 </body>
 </html>

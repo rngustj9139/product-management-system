@@ -7,15 +7,18 @@
 </head>
 <body>
 
-<div class="container" style="max-width: 600px">
+<div th:insert="~{fragment/navbar :: navbar}"></div>
 
+<div th:insert="~{fragment/header :: header}" class="mb-xxl-5"></div>
+
+<div class="container" style="max-width: 1000px; margin-top: 250px; margin-bottom: 250px">
   <div class="py-5 text-center">
     <h2>홈 화면</h2>
   </div>
 
   <div class="row">
     <div class="col">
-      <button class="w-100 btn btn-secondary btn-lg" type="button"
+      <button class="w-100 btn btn-secondary btn-lg" type="button" id="sign-up"
               th:onclick="|location.href='@{/members/add}'|">
         회원 가입
       </button>
@@ -29,10 +32,16 @@
       </button>
     </div>
   </div>
-
   <hr class="my-4">
-
 </div> <!-- /container -->
+
+<div th:insert="~{fragment/footer :: footer}"></div>
+
+<script>
+  focusMethod = function getFocus() {
+    document.getElementById("sign-up").focus();
+  }
+</script>
 
 </body>
 </html>

@@ -6,8 +6,9 @@
           href="../css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<div th:insert="~{fragment/navbar :: navbar}"></div>
 
-<div class="container" style="max-width: 700px">
+<div class="container" style="max-width: 600px; margin-top: 150px; margin-bottom: 200px">
     <div class="py-5 text-center">
         <h2 th:text="#{page.items}">상품 목록</h2>
     </div>
@@ -61,5 +62,6 @@
 
 </div> <!-- /container -->
 
+<div th:insert="~{fragment/footer :: footer}"></div>
 </body>
 </html>

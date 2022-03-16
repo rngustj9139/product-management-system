@@ -17,6 +17,11 @@ public class HomeController {
 
     private final MemoryMemberRepository memoryMemberRepository;
 
+    @GetMapping("/test")
+    public String test() {
+        return "test";
+    }
+
     @GetMapping("/")
     public String homeLogin(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember, Model model) { // 세션이 없는 사람도 있으므로 required = false라고 지정한다.
         if (loginMember == null) {
