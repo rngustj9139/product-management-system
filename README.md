@@ -10,7 +10,7 @@ SpringBoot를 이용한 상품 관리 시스템(spring mvc)
 ---|
 java|
 springboot|
-thymeleaf|
-bootstrap|
 jpa|
 h2|
+thymeleaf|
+bootstrap|
