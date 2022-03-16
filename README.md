@@ -12,4 +12,5 @@ java|
 springboot|
 thymeleaf|
 bootstrap|
+jpa|
 h2|
