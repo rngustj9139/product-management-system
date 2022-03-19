@@ -71,9 +71,15 @@ public class ItemController {
     }
 
     @GetMapping
-    public String items(Model model) {
-        List<Item> items = itemService.findAllItem();
+    public String items(Model model, @RequestParam(value = "page", defaultValue = "1") int pageNum) { // localhost:8080/items?page=1
+//      List<Item> items = itemService.findAllItem();
+//      model.addAttribute("items", items);
+
+        List<Item> items = itemService.findItems(pageNum); // 페이지 번호 별 상품
+        int[] pages = itemService.pageList(); // 페이지 개수
         model.addAttribute("items", items);
+        model.addAttribute("pageList", pages);
+
         return "items/items";
     }
 

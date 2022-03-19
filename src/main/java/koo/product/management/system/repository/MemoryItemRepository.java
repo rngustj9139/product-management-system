@@ -52,6 +52,16 @@ public class MemoryItemRepository implements ItemRepository{
         --sequence;
     }
 
+    @Override
+    public List<Item> findAllPaging(int page) {
+        return null;
+    }
+
+    @Override
+    public int itemCount() {
+        return 0;
+    }
+
 //    public void clearStore() {
 //        store.clear();
 //    }

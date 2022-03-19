@@ -18,7 +18,7 @@
   <hr class="my-4">
   <div class="row">
     <div class="col">
-      <button class="w-100 btn btn-secondary btn-lg" type="button"
+      <button class="w-100 btn btn-secondary btn-lg" type="button" id="product-management"
               th:onclick="|location.href='@{/items}'|">
         상품 관리
       </button>
@@ -36,5 +36,11 @@
 </div> <!-- /container -->
 
 <div th:insert="~{fragment/footer :: footer}"></div>
+
+<script>
+  focusMethod = function getFocus() {
+    document.getElementById("product-management").focus();
+  }
+</script>
 </body>
 </html>

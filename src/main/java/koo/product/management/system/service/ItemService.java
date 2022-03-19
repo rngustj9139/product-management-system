@@ -40,4 +40,22 @@ public class ItemService {
         itemRepository.delete(itemId);
     }
 
+    // 페이지 별 상품 조회
+    public List<Item> findItems(int page) {
+        return itemRepository.findAllPaging(page);
+    }
+
+    // 페이지의 개수
+    public int[] pageList() {
+        int totalPage = itemRepository.itemCount() / 10;
+        totalPage = ((itemRepository.itemCount() % 10) == 0) ? totalPage : totalPage + 1;
+
+        int[] pages = new int[totalPage];
+        for(int i = 0; i < totalPage; i++) {
+            pages[i] = i + 1;
+        }
+
+        return pages;
+    }
+
 }
