@@ -5,11 +5,13 @@ import koo.product.management.system.repository.ItemRepository;
 import koo.product.management.system.repository.MemoryItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
+@Transactional // jpa 사용할때 꼭 붙이기
 public class ItemService {
 
     private final ItemRepository itemRepository;
