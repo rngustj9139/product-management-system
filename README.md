@@ -13,6 +13,7 @@ SpringBoot를 이용한 상품 관리 시스템(spring mvc)
 - validation 적용
 - 예외 처리 적용(오류페이지)
 - 파일 업로드 기능 구현
+- 페이징 구현
 - 상품 CRUD 기능 구현
 - 부트스트랩 적용
 - docker & k8s를 이용한 배포
