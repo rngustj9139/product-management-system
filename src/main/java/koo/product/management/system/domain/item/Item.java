@@ -27,6 +27,7 @@ public class Item {
     @ElementCollection // 값타입 컬렉션
     @CollectionTable(name = "REGIONS")
     private List<String> regions; // 등록 지역
+    @Enumerated(EnumType.STRING) // DB에 숫자가 아닌 문자가 적힌다. (ex 0, 1, 2... -> BOOK, FOOD, ETC)
     private ItemType itemType; // 상품 종류
     private String deliveryCode; // 배송 방식
 

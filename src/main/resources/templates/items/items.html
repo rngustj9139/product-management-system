@@ -60,8 +60,11 @@
         </table>
 
         <nav aria-label="...">
-            <ul class="pagination pagination-sm justify-content-center" th:each="pageNum : ${pageList}">
-                <li class="page-item active" aria-current="page"><a class="page-link" th:href="@{'/items?page=' + ${pageNum}}">[[${pageNum}]]</a></li>
+            <ul class="pagination pagination-sm justify-content-center">
+                <li class="page-item" aria-current="page" th:each="pageNum : ${pageList}">
+                    <a class="page-link" th:href="@{'/items?page=' + ${pageNum}}">[[${pageNum}]]</a>
+                </li>
+                <!-- <li class="page-item"><a class="page-link" href="#">2</a></li> -->
             </ul>
         </nav>
     </div>

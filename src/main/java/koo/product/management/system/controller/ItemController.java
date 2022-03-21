@@ -79,6 +79,7 @@ public class ItemController {
         int[] pages = itemService.pageList(); // 페이지 개수
         model.addAttribute("items", items);
         model.addAttribute("pageList", pages);
+        model.addAttribute("num", pageNum);
 
         return "items/items";
     }

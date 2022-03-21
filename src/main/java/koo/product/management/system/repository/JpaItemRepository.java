@@ -52,7 +52,7 @@ public class JpaItemRepository implements ItemRepository{
     }
 
     public List<Item> findAllPaging(int page) { // 페이징(전체 상품 조회)
-        return em.createQuery("select i from Item i order by i.id desc", Item.class)
+        return em.createQuery("select i from Item i order by i.id asc", Item.class)
                 .setFirstResult((page-1) * 10) // 시작 인덱스
                 .setMaxResults(10) // 10개씩 끊음
                 .getResultList();
