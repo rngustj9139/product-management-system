@@ -77,7 +77,8 @@
         <div>상품 종류</div>
         <div th:each="type : ${itemTypes}" class="form-check form-check-inline">
             <input type="radio" th:field="${item.itemType}" th:value="${type.name()}" class="form-check-input" disabled>
-            <label th:for="${#ids.prev('itemType')}" th:text="${type.description}" class="form-check-label">
+            <label th:for="${#ids.prev('itemType')}"
+                   th:text="${type.description}" class="form-check-label">
                 BOOK
             </label>
         </div>

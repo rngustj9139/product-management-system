@@ -13,18 +13,18 @@ import java.util.List;
 @Data // setter, getter, toString
 public class ItemUpdateForm {
 
-    @NotNull // (빈 값이면 안됨)
+    @NotNull
     private Long id;
 
     @NotBlank
     private String itemName;
 
-    @NotNull // (빈 값이면 안됨)
+    @NotNull
     @Range(min = 1000, max = 1000000)
     private Integer price;
 
-    @NotNull // (빈 값이면 안됨)
-    private Integer quantity; // 수정에서는 수량을 자유롭게 변경할 수 있다. (빈 값만 아니면 됨)
+    @NotNull
+    private Integer quantity; // 수정에서는 수량을 자유롭게 변경할 수 있다.
 
     private MultipartFile attachFile; // 첨부파일 하나
     private List<MultipartFile> imageFiles; // 이미지 파일은 여러개 업로드 가능

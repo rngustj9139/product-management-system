@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -29,8 +30,9 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(@Validated @ModelAttribute("loginForm") LoginForm form, BindingResult bindingResult,
-                         @RequestParam(defaultValue = "/") String redirectURL,
-                         HttpServletRequest request) {
+                        @RequestParam(defaultValue = "/") String redirectURL,
+                        HttpServletRequest request,
+                        RedirectAttributes redirectAttributes) {
         if(bindingResult.hasErrors()) {
             return "login/loginForm";
         }

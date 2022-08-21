@@ -102,7 +102,7 @@ public class ItemController {
         // 특정 필드가 아닌 복합 룰 검증 (global error, object error)
         if(form.getPrice() != null && form.getQuantity() != null) {
             int result = form.getPrice() * form.getQuantity();
-            if(result < 10000) { ;
+            if(result < 10000) {
                 bindingResult.reject("totalPriceMin", new Object[]{10000, result}, null);
             }
         }
