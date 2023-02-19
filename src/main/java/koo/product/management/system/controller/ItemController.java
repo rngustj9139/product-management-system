@@ -107,6 +107,8 @@ public class ItemController {
             }
         }
 
+        // bindingResult.rejectValue("itemName", "required", new Object[]{}, null);
+
         // 검증에 실패하면 다시 입력 폼으로
         if(bindingResult.hasErrors()) {
             log.info("errors = {}", bindingResult);
