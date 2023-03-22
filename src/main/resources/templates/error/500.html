@@ -11,6 +11,16 @@
 
   <div>
     <p>오류 화면 입니다.</p>
+    <ul>
+      <!-- BasicErrorController가 오류 정보를 모델에 담아서 뷰에 전달해준다. (application.properties에서 server.error.include-message=always로 설정하기)-->
+      <li th:text="|timestamp: ${timestamp}|"></li>
+      <li th:text="|path: ${path}|"></li>
+      <li th:text="|status: ${status}|"></li>
+      <li th:text="|message: ${message}|"></li>
+      <li th:text="|errors: ${errors}|"></li>
+      <li th:text="|exception: ${exception}|"></li>
+      <li th:text="|trace: ${trace}|"></li>
+    </ul>
   </div>
 
   <hr class="my-4">

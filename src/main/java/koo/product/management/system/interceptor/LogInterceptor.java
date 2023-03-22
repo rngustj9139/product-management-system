@@ -21,13 +21,14 @@ public class LogInterceptor implements HandlerInterceptor {
 
         request.setAttribute(LOG_ID, uuid); // 스프링 인터셉터는 호출 시점이 완전히 분리되어있어서 afterCompletion에서 uuid를 표시하기 위해 request에 uuid값을 넣음
 
+        // @RequestMapping: HandlerMethod
         if(handler instanceof HandlerMethod) {
             HandlerMethod hm = (HandlerMethod) handler; // 호출할 컨트롤러 메서드의 모든 정보가 포함 되어있다.
         }
 
         log.info("REQUEST [{}][{}][{}]", uuid, requestURI, handler);
 
-        return true;
+        return true; // 이후 인터셉터 체인의 다른 인터셉터가 호출되거나 핸들러(컨트롤러)가 수행된다.(return 값이 true일 경우에만)
     }
 
     @Override // 핸들러(컨트롤러) 호출 후 동작
@@ -35,7 +36,7 @@ public class LogInterceptor implements HandlerInterceptor {
         log.info("postHandle [{}]", modelAndView);
     }
 
-    @Override // 뷰 렌더링 후 동작 (여기서만 예외 터진 것 표시 가능)
+    @Override // 뷰 렌더링 후 동작 (여기서만 예외 터진 것 표시 가능, 예외가 터져도 호출을 보장)
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         String requestURI = request.getRequestURI();
         String uuid = (String) request.getAttribute(LOG_ID);
