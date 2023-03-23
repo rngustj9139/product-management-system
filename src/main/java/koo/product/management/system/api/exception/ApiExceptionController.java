@@ -34,15 +34,23 @@ public class ApiExceptionController {
         if (id.equals("ex")) {
             throw new RuntimeException("잘못된 사용자 입니다.");
         }
+        if (id.equals("bad")) {
+            throw new IllegalArgumentException("잘못된 입력 값");
+        }
 
         return new MemberDto(id, "hello" + id);
     }
 
-    @RequestMapping(value = "/error-page/500", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/error-page/500")
+    public void errorPageGeneration() {
+        throw new RuntimeException("잘못된 요청입니다.");
+    }
+
+    @RequestMapping(value = "/error-page/500", produces = MediaType.APPLICATION_JSON_VALUE) // 요청시 Accept를 application/json으로 해야함
     public ResponseEntity<Map<String, Object>> errorPage500Api(HttpServletRequest request, HttpServletResponse response) {
         log.info("API errorPage 500");
 
-        HashMap<String, Object> result = new HashMap<>();
+        HashMap<String, Object> result = new HashMap<>(); // 해쉬맵은 순서를 보장하지 않는다.
         Exception ex = (Exception) request.getAttribute(ERROR_EXCEPTION);
         result.put("status", request.getAttribute(ERROR_EXCEPTION_TYPE));
 
@@ -57,5 +65,7 @@ public class ApiExceptionController {
         private String memberId;
         private String name;
     }
+
+    // 그냥 요청시 accept를 application/json으로 하면 예외가 발생할 때 스프링부트가 기본적으로 제공하는 json 응답을 내려준다.(BasicErrorController를 통해)
 
 }
