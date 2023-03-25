@@ -25,10 +25,12 @@ public class MyHandlerExceptionResolver implements HandlerExceptionResolver {
                 log.info("IllegalArgumentException resolver to 400");
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, ex.getMessage());
 
-                return new ModelAndView(); // 예외가 WAS 까지 않가고 정상 응답이 간다.
+//              response.getWriter().println("JSON 데이터");
+
+                return new ModelAndView(); // 예외가 WAS 까지 않가고 정상 응답이 간다. 비어있는 ModelAndView이므로 뷰 렌더링은 하지 않는다.
             }
         } catch (IOException e) {
-                log.error("resolver ex", e);
+                log.error("resolver ex", e); // exception은 {} 사용 안해도 된다.
         }
 
         return null; // null을 리턴하게 되면 예외가 WAS까지 간다.
