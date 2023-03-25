@@ -15,7 +15,7 @@ import java.util.HashMap;
 // * HandlerExceptionResolver는 예외를 그냥 끝낼 수 있다 => WAS까지 예외가 올라가고 다시 오류페이지 컨트롤러를 호출하는 것이 아님 (응답만 하고 WAS에는 정상 응답이 가게 된다.)
 // * but ExceptionResolver를 직접 구현 하자니 상당히 복잡함, => 스프링이 제공하는 ExceptionResolver를 이용하기
 // * 1. ExceptionHandlerExceptionResolver => @ExceptionHandler 처리
-// * 2. ResponseStatusExceptionResolver => @ResponseStatus(value = HttpStatus.NOT_FOUND) 처리
+// * 2. ResponseStatusExceptionResolver => @ResponseStatus(value = HttpStatus.NOT_FOUND) 처리 => 예외에 따라서 HTTP 상태 코드를 지정해주는 역할을 한다.
 // * 3. DefaultHandlerExceptionResolver => 스프링 내부 기본 예외를 처리
 @Slf4j
 public class UserHandlerExceptionResolver implements HandlerExceptionResolver {

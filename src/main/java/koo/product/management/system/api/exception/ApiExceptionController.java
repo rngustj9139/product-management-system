@@ -71,4 +71,9 @@ public class ApiExceptionController {
 
     // 그냥 요청시 accept를 application/json으로 하면 예외가 발생할 때 스프링부트가 기본적으로 제공하는 json 응답을 내려준다.(BasicErrorController를 통해)
 
+    @GetMapping("/api/response-status-ex1") // 그냥 HandlerExceptionResolver를 만들어서 쓰는것 보다는 스프링에서 제공하는 ExceptionResolver를 이용
+    public String responseStatusEx1() {
+        throw new BadRequestException();
+    }
+
 }
