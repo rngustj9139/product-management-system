@@ -1,6 +1,7 @@
 package koo.product.management.system;
 
 import koo.product.management.system.api.exception.resolver.MyHandlerExceptionResolver;
+import koo.product.management.system.api.exception.resolver.UserHandlerExceptionResolver;
 import koo.product.management.system.interceptor.LogInterceptor;
 import koo.product.management.system.interceptor.LoginCheckInterceptor;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +30,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) { // api/exception/resolver/MyHandlerExceptionResolver를 위해 등록
         resolvers.add(new MyHandlerExceptionResolver());
+        resolvers.add(new UserHandlerExceptionResolver());
     }
 
 }
