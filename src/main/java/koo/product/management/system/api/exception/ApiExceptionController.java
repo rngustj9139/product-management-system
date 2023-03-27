@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
@@ -71,9 +72,14 @@ public class ApiExceptionController {
 
     // 그냥 요청시 accept를 application/json으로 하면 예외가 발생할 때 스프링부트가 기본적으로 제공하는 json 응답을 내려준다.(BasicErrorController를 통해)
 
-    @GetMapping("/api/response-status-ex1") // 그냥 HandlerExceptionResolver를 만들어서 쓰는것 보다는 스프링에서 제공하는 ExceptionResolver를 이용
+    @GetMapping("/api/response-status-ex1") // 그냥 HandlerExceptionResolver를 만들어서 쓰는것 보다는 스프링에서 제공하는 ExceptionResolver를 이용 (예시 - ResponseStatusExceptionResolver)
     public String responseStatusEx1() {
         throw new BadRequestException();
+    }
+
+    @GetMapping("/api/response-status-ex2") // 그냥 ResponseStatusExceptionResolver를 쓰면 우리가 만든 예외가 아니라 스프링에서 제공하는 예외에 적용하지 못함 => ResponseStatusException 이용
+    public String responseStatusEx2() {
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "존재 하지 않는 페이지를 요청 하셨습니다.", new IllegalArgumentException()); // (반환코드, 에러메세지, 예외)
     }
 
 }
