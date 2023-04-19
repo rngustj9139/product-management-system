@@ -1,16 +1,26 @@
 package koo.product.management.system.api.exception;
 
+import koo.product.management.system.api.exception.resolver.exceptionHandler.ErrorResult;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 public class ApiExceptionV2Controller {
 
-    @GetMapping("/api/members/{id}")
-    public ApiExceptionController.MemberDto getMember(@PathVariable("id") String id) { // 예외가 발생하면 오류 페이지(html)가 응답으로 옮(문제점) (스프링의 예외 처리와 오류페이지 제공 기능)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IllegalArgumentException.class) // IllegalArgumentException 발생시 ErrorResult 객체가 json으로 응답되게 된다.
+    public ErrorResult illegalExHandler(IllegalArgumentException e) {
+        log.error("[exceptionHandler] ex", e);
+
+        return new ErrorResult("BAD", e.getMessage()); // but HTTP 응답 상태 코드가 200으로 된다. 따라서 @ResponseStatus를 붙여야 한다.
+    }
+
+    @GetMapping("/api2/members/{id}")
+    public MemberDto getMember(@PathVariable("id") String id) {
         if (id.equals("ex")) {
             throw new RuntimeException("잘못된 사용자 입니다.");
         }
@@ -21,7 +31,7 @@ public class ApiExceptionV2Controller {
             throw new UserException("사용자 오류");
         }
 
-        return new ApiExceptionController.MemberDto(id, "hello" + id);
+        return new MemberDto(id, "hello" + id);
     }
 
     @Data

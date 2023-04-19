@@ -28,7 +28,7 @@ public class ApiExceptionController {
     private static final String ERROR_STATUS_CODE = "javax.servlet.error.status_code";
 
     @GetMapping("/api/members/{id}")
-    public MemberDto getMember(@PathVariable("id") String id) { // 예외가 발생하면 오류 페이지(html)가 응답으로 옮(문제점) (스프링의 예외 처리와 오류페이지 제공 기능)
+    public MemberDto getMember(@PathVariable("id") String id) { // 예외가 발생하면 오류 페이지(html)가 응답으로 옮(문제점) (스프링의 예외 처리와 오류페이지 제공 기능, BasicErrorController가 담당)
         if (id.equals("ex")) {
             throw new RuntimeException("잘못된 사용자 입니다.");
         }
@@ -69,7 +69,7 @@ public class ApiExceptionController {
 
     }
 
-    // 그냥 요청시 accept를 application/json으로 하면 예외가 발생할 때 스프링부트가 기본적으로 제공하는 json 응답을 내려준다.(BasicErrorController를 통해)
+    // 그냥 요청시 accept를 application/json으로 하면 예외가 발생할 때 스프링부트가 기본적으로 제공하는 json 응답을 내려준다.(BasicErrorController가 담당)
 
     @GetMapping("/api/response-status-ex1") // 그냥 HandlerExceptionResolver를 만들어서 쓰는것 보다는 스프링에서 제공하는 ExceptionResolver를 이용 (예시 - ResponseStatusExceptionResolver)
     public String responseStatusEx1() {
