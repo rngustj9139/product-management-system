@@ -1,5 +1,6 @@
-package koo.product.management.system.api.exception;
+package koo.product.management.system.api.exception.resolver.exceptionHandler;
 
+import koo.product.management.system.api.exception.UserException;
 import koo.product.management.system.api.exception.resolver.exceptionHandler.ErrorResult;
 import lombok.AllArgsConstructor;
 import lombok.Data;
