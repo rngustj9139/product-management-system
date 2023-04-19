@@ -37,7 +37,7 @@ public class ApiExceptionV2Controller {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(IllegalArgumentException.class) // IllegalArgumentException 발생시 ErrorResult 객체가 json으로 응답되게 된다.
+    @ExceptionHandler(IllegalArgumentException.class) // IllegalArgumentException 발생시(자식 예외 클래스 포함, 스프링은 디테일 한것이 우선순위가 높기 때문에 자식예외가 우선순위 높음) ErrorResult 객체가 json으로 응답되게 된다.
     public ErrorResult illegalExHandler(IllegalArgumentException e) {
         log.error("[exceptionHandler] ex", e);
 
@@ -50,6 +50,14 @@ public class ApiExceptionV2Controller {
         ErrorResult errorResult = new ErrorResult("USER-EX", e.getMessage());
 
         return new ResponseEntity(errorResult, HttpStatus.BAD_REQUEST);
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler
+    public ErrorResult exHandler(Exception e) { // Exception은 최상위 예외, 따라서 위의 두 예외에 해당하지 않는 예외가 발생할 경우 이 함수가 수행됨
+        log.error("[exceptionHandler] ex", e);
+
+        return new ErrorResult("EX", e.getMessage());
     }
 
 }
