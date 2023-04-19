@@ -36,6 +36,10 @@ public class ApiExceptionV2Controller {
 
     }
 
+    /**
+     * 이곳에서 정의한 ExceptionHandler는 이 컨트롤러 파일에서만 동작한다. 그리고 정상 코드와 예외처리 코드가 하나의 파일에 존재하게 된다. => 이는 단점이므로 @ContollerAdvice 이용하기
+     */
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IllegalArgumentException.class) // IllegalArgumentException 발생시(자식 예외 클래스 포함, 스프링은 디테일 한것이 우선순위가 높기 때문에 자식예외가 우선순위 높음) ErrorResult 객체가 json으로 응답되게 된다.
     public ErrorResult illegalExHandler(IllegalArgumentException e) {
