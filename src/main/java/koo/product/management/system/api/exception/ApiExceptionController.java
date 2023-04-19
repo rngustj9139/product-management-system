@@ -6,10 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.RequestDispatcher;
@@ -80,6 +77,11 @@ public class ApiExceptionController {
     @GetMapping("/api/response-status-ex2") // 그냥 ResponseStatusExceptionResolver를 쓰면 우리가 만든 예외가 아니라 스프링에서 제공하는 예외에 적용하지 못함 => ResponseStatusException 이용
     public String responseStatusEx2() {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "존재 하지 않는 페이지를 요청 하셨습니다.", new IllegalArgumentException()); // (반환코드, 에러메세지, 예외)
+    }
+
+    @GetMapping("/api/default-handler-ex") // 파라미터 바인딩 에러는 클라이언트가 주어진 타입이 아닌 다른 타입의 값을 입력했으므로 클라이언트(400) 에러임 하지만 500으로 표시되게 되는 DefaultHandlerExceptionResolver를 이용하면 이를 해결할 수 있다. (저절로 적용됨 -> 400으로 표시됨)
+    public String defaultHandlerException(@RequestParam Integer data) {
+        return "ok";
     }
 
 }
