@@ -63,8 +63,10 @@ public class ApiExceptionController {
     @Data
     @AllArgsConstructor
     static class MemberDto {
+
         private String memberId;
         private String name;
+
     }
 
     // 그냥 요청시 accept를 application/json으로 하면 예외가 발생할 때 스프링부트가 기본적으로 제공하는 json 응답을 내려준다.(BasicErrorController를 통해)
