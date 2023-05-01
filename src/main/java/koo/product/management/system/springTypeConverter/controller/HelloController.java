@@ -1,4 +1,4 @@
-package koo.product.management.system.SpringTypeConverter.controller;
+package koo.product.management.system.springTypeConverter.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

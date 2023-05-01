@@ -1,4 +1,4 @@
-package koo.product.management.system.SpringTypeConverter.converter;
+package koo.product.management.system.springTypeConverter.converter;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
