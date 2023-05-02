@@ -39,7 +39,7 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     @Override
-    public void addFormatters(FormatterRegistry registry) { // 컨버터 등록 (스프링은 내부에서 ConversionService 제공한다.)
+    public void addFormatters(FormatterRegistry registry) { // 컨버터 등록 (스프링은 내부에서 ConversionService 제공한다.) (HelloController에서 직접 사용해보기)
         registry.addConverter(new StringToIntegerConverter());
         registry.addConverter(new IntegerToStringConverter());
         registry.addConverter(new StringToIpPortConverter());
