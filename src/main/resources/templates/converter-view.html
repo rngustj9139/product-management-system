@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li>${number}: <span th:text="${number}"></span></li> <!-- 10000으로 출력됨 (숫자)-->
+    <li>${{number}}: <span th:text="${{number}}"></span></li> <!-- 중괄호를 두개 쓰면 컨버터를 적용하는 것임 --> <!-- 10000으로 출력됨(문자 IntegerToStringConverter 동작) -->
+    <li>${ipPort}: <span th:text="${ipPort}"></span></li> <!-- hello.typeconverter.type.IpPort@59cb0946으로 출력됨 -->
+    <li>${{ipPort}}: <span th:text="${{ipPort}}"></span></li> <!-- 중괄호를 두개 쓰면 컨버터를 적용하는 것임 --> <!-- 127.0.0.1:8080으로 출력됨(객체 => 문자) -->
+</ul>
+</body>
+</html>
